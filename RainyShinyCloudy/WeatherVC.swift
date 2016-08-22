@@ -17,15 +17,16 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var currentWeatherLbl: UILabel!
     @IBOutlet weak var currentWeatherImg: UIImageView!
     @IBOutlet weak var tableView: UITableView!
-    
+    var currentWeather = CurrentWeather()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 80
-        
-        print(CURRENT_WEATHER_URL)
+        currentWeather.downloadWeatherDetails {
+            // Setup the UI to load downloaded data
+        }
         
     }
     
