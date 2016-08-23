@@ -17,17 +17,25 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var currentWeatherLbl: UILabel!
     @IBOutlet weak var currentWeatherImg: UIImageView!
     @IBOutlet weak var tableView: UITableView!
-    var currentWeather = CurrentWeather()
+    var currentWeather: CurrentWeather!
+    var forecast: Forecast!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 80
+        currentWeather = CurrentWeather()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        forecast = Forecast()
+        //var forecasts = [Forecast]()
         currentWeather.downloadWeatherDetails {
-            // Setup the UI to load downloaded data
+            self.forecast.downloadForecastData { forecasts in
+                self.updateMainUI()
+                print("NUMERO ELEMENTI: \(forecasts.count)")
+            }
         }
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -42,6 +50,12 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath)
         return cell
     }
-
+    
+    func updateMainUI () {
+        dateLbl.text = currentWeather.date
+        tempLbl.text = "\(currentWeather.currentTemp)°"
+        locationLbl.text = "\(currentWeather.cityName), \(currentWeather.country)"
+        currentWeatherLbl.text = currentWeather.weatherType
+        currentWeatherImg.image = UIImage(named: currentWeather.weatherType)
+    }
 }
-
