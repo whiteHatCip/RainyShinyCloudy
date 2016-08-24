@@ -16,6 +16,7 @@
 		8D17206E1D6A11B3009EF464 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D17206C1D6A11B3009EF464 /* LaunchScreen.storyboard */; };
 		8DAC52251D6BC1EF00537D00 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC52241D6BC1EF00537D00 /* Forecast.swift */; };
 		8DCC1F271D6D1A1E00B9B834 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCC1F261D6D1A1E00B9B834 /* WeatherCell.swift */; };
+		8DCC1F291D6D29DD00B9B834 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCC1F281D6D29DD00B9B834 /* Location.swift */; };
 		F21946E97074EC9323A6B7AB /* Pods_RainyShinyCloudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318EE6973DFFB78963B783E9 /* Pods_RainyShinyCloudy.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		8D17206F1D6A11B3009EF464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DAC52241D6BC1EF00537D00 /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		8DCC1F261D6D1A1E00B9B834 /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		8DCC1F281D6D29DD00B9B834 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C6B15F9E0C2E932CF68A9371 /* Pods-RainyShinyCloudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainyShinyCloudy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RainyShinyCloudy/Pods-RainyShinyCloudy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1720651D6A11B3009EF464 /* WeatherVC.swift */,
+				8DCC1F281D6D29DD00B9B834 /* Location.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				8D11358C1D6B37DA0039D456 /* CurrentWeather.swift in Sources */,
 				8D11358A1D6B35D80039D456 /* Constants.swift in Sources */,
 				8DAC52251D6BC1EF00537D00 /* Forecast.swift in Sources */,
+				8DCC1F291D6D29DD00B9B834 /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
