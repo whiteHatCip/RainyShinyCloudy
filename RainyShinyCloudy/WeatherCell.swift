@@ -22,8 +22,8 @@ class WeatherCell: UITableViewCell {
     }
     
     func configureCell(_ forecast: Forecast) {
-        lowLbl.text = String(format: "%0.2f", forecast.lowTemp)
-        highLbl.text = String(format: "%0.2f", forecast.highTemp)
+        lowLbl.text = String(format: "%0.1f%°", forecast.lowTemp)
+        highLbl.text = String(format: "%0.1f%°", forecast.highTemp)
         dayLbl.text = forecast.date.capitalized
         weatherLbl.text = forecast.weatherType
         weatherImg.image = UIImage(named: "\(forecast.weatherType) Mini")
