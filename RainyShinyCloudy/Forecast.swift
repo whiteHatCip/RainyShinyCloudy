@@ -100,6 +100,7 @@ class Forecast { // Class begins
                         let forecast = Forecast(weatherDict: obj)
                         forecasts.append(forecast)
                     }
+                    forecasts.remove(at: 0)
                 }
             }
             completed(forecasts)

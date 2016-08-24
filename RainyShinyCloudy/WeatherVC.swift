@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
     // MARK: @IBOutlets
     @IBOutlet weak var dateLbl: UILabel!
@@ -17,25 +18,47 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var currentWeatherLbl: UILabel!
     @IBOutlet weak var currentWeatherImg: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: Location variables
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation!
+    
     var currentWeather: CurrentWeather!
     var forecast: Forecast!
+    var forecasts: [Forecast]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
+        
         tableView.rowHeight = 80
         currentWeather = CurrentWeather()
-    }
-    override func viewDidAppear(_ animated: Bool) {
         forecast = Forecast()
-        //var forecasts = [Forecast]()
+        forecasts = [Forecast]()
         currentWeather.downloadWeatherDetails {
-            self.forecast.downloadForecastData { forecasts in
+            self.forecast.downloadForecastData { temp_forecasts in
                 self.updateMainUI()
-                print("NUMERO ELEMENTI: \(forecasts.count)")
+                self.forecasts = temp_forecasts
+                self.tableView.reloadData()
             }
         }
+    }
+    
+    func locationAuthStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            currentLocation = locationManager.location
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -43,12 +66,17 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return forecasts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath)
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath) as? WeatherCell {
+            let forecast = self.forecasts[indexPath.row]
+            cell.configureCell(forecast)
+            return cell
+        } else {
+            return WeatherCell()
+        }
     }
     
     func updateMainUI () {
