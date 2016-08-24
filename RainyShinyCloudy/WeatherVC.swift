@@ -40,18 +40,13 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
         currentWeather = CurrentWeather()
         forecast = Forecast()
         forecasts = [Forecast]()
-        currentWeather.downloadWeatherDetails {
-            self.forecast.downloadForecastData { temp_forecasts in
-                self.updateMainUI()
-                self.forecasts = temp_forecasts
-                self.tableView.reloadData()
-            }
-        }
     }
     
     func locationAuthStatus() {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             currentLocation = locationManager.location
+            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
         } else {
             locationManager.requestWhenInUseAuthorization()
             locationAuthStatus()
@@ -59,7 +54,15 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        locationAuthStatus()
+        currentWeather.downloadWeatherDetails {
+            self.forecast.downloadForecastData { temp_forecasts in
+                self.updateMainUI()
+                self.forecasts = temp_forecasts
+                self.tableView.reloadData()
+            }
+        }
+
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
