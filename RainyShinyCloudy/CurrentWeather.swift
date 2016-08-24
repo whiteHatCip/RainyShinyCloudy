@@ -26,7 +26,7 @@ class CurrentWeather {
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .none
         let currentDate = dateFormatter.string(from: Date())
-        _date = "Today, \(currentDate)"
+        _date = "Oggi, \(currentDate)"
     }
     
     var cityName: String {
