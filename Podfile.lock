@@ -1,22 +1,12 @@
 PODS:
-  - Alamofire (4.0.0)
+  - Alamofire (4.3.0)
 
 DEPENDENCIES:
-  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift3`)
-
-EXTERNAL SOURCES:
-  Alamofire:
-    :branch: swift3
-    :git: https://github.com/Alamofire/Alamofire.git
-
-CHECKOUT OPTIONS:
-  Alamofire:
-    :commit: 1dc3992a3854ca369368c8997ea3c45054070e67
-    :git: https://github.com/Alamofire/Alamofire.git
+  - Alamofire (~> 4.3)
 
 SPEC CHECKSUMS:
-  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
 
-PODFILE CHECKSUM: da72a5a2c91812be3ee95963b04d0e74a791b8db
+PODFILE CHECKSUM: 004d2096490787c2518ddaf4bb5a9a16f590d512
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

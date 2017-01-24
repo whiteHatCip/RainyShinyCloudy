@@ -90,4 +90,5 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
         currentWeatherLbl.text = currentWeather.weatherType
         currentWeatherImg.image = UIImage(named: currentWeather.weatherType)
     }
+    
 }

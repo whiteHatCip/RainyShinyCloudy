@@ -87,11 +87,11 @@ class Forecast { // Class begins
     }
     // Setters and getters end
     
-    func downloadForecastData(completed: CompletionHandler) {
+    func downloadForecastData(completed: @escaping CompletionHandler) {
         let forecastURL = URL(string: FORECAST_URL)!
         var forecasts = [Forecast]()
-        Alamofire.request(forecastURL, withMethod: .get).responseJSON {
-            Response in let result = Response.result
+        Alamofire.request(forecastURL).responseJSON { (Response) in
+            let result = Response.result
             print(result)
             
             if let dict = result.value as? Dictionary<String, AnyObject> {
